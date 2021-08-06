@@ -3,8 +3,8 @@
  **/
 
 /* Global Styles */
-@import url('https://fonts.googleapis.com/css?family=Didact+Gothic|IBM+Plex+Mono|Poppins');
 
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic|IBM+Plex+Mono|Poppins');
 * {
   font-family: 'Didact Gothic'
 }
@@ -14,16 +14,16 @@ body {
   padding: 0;
 }
 
-
 /* Styles */
+
 h2, input[name="title"], textarea {
   font-family: 'IBM Plex Mono'
 }
 
 p.instructions {
-	font-family: monospace;
-	font-size: 32px;
-	text-align: center;
+  font-family: monospace;
+  font-size: 32px;
+  text-align: center;
 }
 
 .note-editor input[name="title"] {
@@ -110,8 +110,8 @@ div.sidebar ul li:hover {
   background-repeat: no-repeat;
 }
 
-
 /* Layout Styles */
+
 .app {
   display: flex;
   flex-direction: column;
@@ -128,19 +128,20 @@ div.sidebar ul li:hover {
 }
 
 .master-detail-element {
-  float:left;
+  float: left;
   margin: 10px 0px;
   padding: 20px;
   border: 2px dashed grey;
 }
 
 .sidebar {
-  width:25%;
+  height: calc(100vh - 240px);
+  width: 25%;
   overflow: scroll;
 }
 
 .detail {
-  width:75%;
+  width: 75%;
 }
 
 .note-editor {
@@ -157,8 +158,8 @@ div.sidebar ul li:hover {
   margin-top: 10px;
 }
 
-
 /* Button Style */
+
 input[type="submit"] {
   height: auto;
   width: auto;
@@ -184,4 +185,20 @@ button:hover, .nav-bar:hover, input[type="submit"]:hover {
 
 button:focus, input[type="submit"]:focus {
   outline: none;
+}
+
+.note-title-edit-box {
+  border: 1px dashed black;
+}
+
+.note-body-edit-box {
+  margin-top: 20px;
+  border: 1px dashed black;
+  width: 100%;
+  font-size: 22px;
+  height: 400px;
+}
+
+.hidden {
+  display: none;
 }

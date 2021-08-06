@@ -13,32 +13,37 @@ function NoteContainer() {
   }
 
   const filteredNotes = noteData.filter(note => {
-    return note.title.toLowerCase().includes(searchValue.toLowerCase())
+    return (
+      note.title.toLowerCase().includes(searchValue.toLowerCase())
+      ||
+      note.body.toLowerCase().includes(searchValue.toLowerCase())
+    )
   })
 
   useEffect(() => {
     fetch ("http://localhost:3000/notes")
     .then (Response => Response.json())
-    .then (data => setNoteData(data))
+    .then (data => {
+      setNoteData(data)
+    })
   }, [])
 
-  function selectNote(id) { 
-    console.log(id)
-    console.log(noteData)
-    // TODO: the problem here is that the internal list of noteData does not have a registered ID...
-    // This internal list must have an ID, and thus the list must be re-fetched from the backend. 
-    // OR... sidebar must keep an internal state/list of the current ID... Must pass in the length.
+  /**
+   * When clicking on a note in the sidebar, it calls this function w/the note's id.
+   * Then the main content window sets the title & body of the specified note.
+   */
+  function selectNote(id) {
     setNoteContent(
-      noteData.filter(note => note.id - 1  == id)
+      Array.of(noteData[id])
     )
   }
 
   return (
     <>
-      <Search noteData={noteData} onSearchData={onSearchData}/>
+      <Search noteData={noteData} onSearchData={onSearchData} />
       <div className="container">
-        <Sidebar noteData={filteredNotes} selectNote={selectNote} onNewNote={setNoteData} indexNumber={noteData.length} />
-        <Content noteContent={noteContent}  />
+        <Sidebar noteData={filteredNotes} selectNote={selectNote} setNoteData={setNoteData} />
+        <Content noteContent={noteContent} noteData={noteData} setNoteData={setNoteData} />
       </div>
     </>
   );
